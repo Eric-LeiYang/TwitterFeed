@@ -1,0 +1,29 @@
+PODS:
+  - Mantle (2.0.6):
+    - Mantle/extobjc (= 2.0.6)
+  - Mantle/extobjc (2.0.6)
+  - NSObjectCoder (1.0)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - Realm (0.95.3):
+    - Realm/Headers (= 0.95.3)
+  - Realm/Headers (0.95.3)
+
+DEPENDENCIES:
+  - Mantle
+  - NSObjectCoder (~> 1.0)
+  - ReactiveCocoa
+  - Realm (= 0.95.3)
+
+SPEC CHECKSUMS:
+  Mantle: 299966b00759634931699f69cb6a30b9239b944d
+  NSObjectCoder: edc8e96528ee81693d37dd014df573ca37ba9cac
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  Realm: 55885fa05865344994ad8b56da96669ffa39fbf1
+
+COCOAPODS: 0.39.0
