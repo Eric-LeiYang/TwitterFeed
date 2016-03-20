@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
     
 }
 
@@ -26,5 +26,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)searchButton:(UIButton *)sender {
+    [[TwitterFeedSharedManager manager] setAuthorizationWithSuccess:^(id responseObject) {
+        NSLog(@"");
+    } error:^(NSError *error) {
+    
+    }];
+}
+
 
 @end

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TwitterCell.h"
+#import "TwitterFeedSharedManager.h"
 
 @interface TwitterFeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

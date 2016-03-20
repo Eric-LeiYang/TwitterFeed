@@ -26,6 +26,7 @@
 		F519BB0B1C9E19F000F6F274 /* RealmHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BB0A1C9E19F000F6F274 /* RealmHelpers.m */; };
 		F519BB0E1C9E1A9800F6F274 /* TwitterFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BB0D1C9E1A9800F6F274 /* TwitterFeedModel.m */; };
 		F519BB101C9E257200F6F274 /* libReactiveCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F519BB0F1C9E257200F6F274 /* libReactiveCocoa.a */; };
+		F519BB131C9E2D5F00F6F274 /* TwitterFeedSharedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BB121C9E2D5F00F6F274 /* TwitterFeedSharedManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		F519BB0C1C9E1A9800F6F274 /* TwitterFeedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFeedModel.h; sourceTree = "<group>"; };
 		F519BB0D1C9E1A9800F6F274 /* TwitterFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFeedModel.m; sourceTree = "<group>"; };
 		F519BB0F1C9E257200F6F274 /* libReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReactiveCocoa.a; path = "Pods/../build/Debug-iphoneos/libReactiveCocoa.a"; sourceTree = "<group>"; };
+		F519BB111C9E2D5F00F6F274 /* TwitterFeedSharedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFeedSharedManager.h; sourceTree = "<group>"; };
+		F519BB121C9E2D5F00F6F274 /* TwitterFeedSharedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterFeedSharedManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 			children = (
 				F519BAFC1C9DF63F00F6F274 /* SessionManager.h */,
 				F519BAFD1C9DF63F00F6F274 /* SessionManager.m */,
+				F519BB111C9E2D5F00F6F274 /* TwitterFeedSharedManager.h */,
+				F519BB121C9E2D5F00F6F274 /* TwitterFeedSharedManager.m */,
 			);
 			name = SessionManager;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F519BB131C9E2D5F00F6F274 /* TwitterFeedSharedManager.m in Sources */,
 				F519BB071C9E175700F6F274 /* TwitterCellViewModel.m in Sources */,
 				F519BACA1C9DED5900F6F274 /* TwitterFeedViewController.m in Sources */,
 				F519BB021C9E121F00F6F274 /* TwitterFeedRealm.m in Sources */,

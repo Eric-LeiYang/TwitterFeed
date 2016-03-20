@@ -8,9 +8,6 @@
 
 #import "SessionManager.h"
 
-#define kConsumerKey @"am6BTAfu4nQZffIFR2TOMZMNH"
-#define kConsumerSecretKey @"KDxwzNYCYmHNfrPyjhM23Oxl4sqoy0ETOsEa0Vm3keYdta7Lpi"
-
 #define kSequestTimeOutInterval 30.0
 
 @interface SessionManager()
@@ -20,19 +17,12 @@
 
 @end
 
-@implementation SessionManager 
-
-+ (instancetype) manager
-{
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setHTTPMaximumConnectionsPerHost:1];
-    return [[[self class] alloc] initWithBaseURL:nil sessionConfiguration:configuration];
-}
+@implementation SessionManager
 
 - (instancetype)initWithBaseURL:(NSURL *)url
            sessionConfiguration:(NSURLSessionConfiguration *)configuration
 {
-    self = [SessionManager new];
+    self = [super init];
     self.session = [NSURLSession sessionWithConfiguration:configuration];
     if (!self) {
         return nil;
@@ -62,7 +52,7 @@
 
 - (NSURLSessionTask *) POST:(NSString*)path
                     headers:(NSDictionary *) hearders
-                 parameters:(NSDictionary *)parameters
+                       body:(NSData *)body
                successBlock:(void(^)(id responseObject))successBlock
                  errorBlock:(void(^)(NSError *error))errorBlock
 {
@@ -71,7 +61,7 @@
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                            timeoutInterval:kSequestTimeOutInterval];
     [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[self httpBodyForParamsDictionary:parameters]];
+    [request setHTTPBody:body];
 
     for (NSString *key in [hearders allKeys]) {
         [request setValue:[hearders objectForKey:key] forHTTPHeaderField:key];
@@ -131,44 +121,5 @@
 }
 
 
-#pragma mark - Private Methods
-
-/*
- * percent escape legal characters
- * replace " " with "+" for query params
- */
-
-- (NSString *)percentEscapeString:(NSString *)string
-{
-    string = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet whitespaceCharacterSet]];
-    return [string stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-}
-
-- (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
-{
-    NSMutableArray *parameterArray = [NSMutableArray array];
-    
-    [paramDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
-        NSString *param = [NSString stringWithFormat:@"%@=%@", key, [self percentEscapeString:obj]];
-        [parameterArray addObject:param];
-    }];
-    
-    NSString *string = [parameterArray componentsJoinedByString:@"&"];
-    
-    return [string dataUsingEncoding:NSUTF8StringEncoding];
-}
-
-/*
- * BearerToken = "ConsumerKey" + ":" + "ConsumerSecretKey"
- */
-
-- (NSString *)getBase64EncodedBearerToken
-{
-    NSString *encodedConsumerToken = [self percentEscapeString:kConsumerKey];
-    NSString *encodedConsumerSecret = [self percentEscapeString:kConsumerSecretKey];
-    NSString *bearerTokenCredentials = [NSString stringWithFormat:@"%@:%@", encodedConsumerToken, encodedConsumerSecret];
-    NSData *data = [bearerTokenCredentials dataUsingEncoding:NSUTF8StringEncoding];
-    return [data base64EncodedStringWithOptions:0];
-}
 
 @end

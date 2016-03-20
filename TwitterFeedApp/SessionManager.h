@@ -10,15 +10,21 @@
 
 @interface SessionManager : NSObject
 
-/**
- *  Singleton of session manager
- *
- *  @return An instance of TwitterAppSessionManager
- */
-+ (instancetype) manager;
-
 - (instancetype)initWithBaseURL:(NSURL *)url
            sessionConfiguration:(NSURLSessionConfiguration *)configuration;
+
+/**
+ *  Perform a customized request
+ *
+ *  @param request      request
+ *  @param successBlock success block
+ *  @param errorBlock   error block
+ *
+ *  @return <#return value description#>
+ */
+- (NSURLSessionTask *)performURLSessionTaskForRequest:(NSURLRequest *)request
+                                         successBlock:(void(^)(id responseObject))successBlock
+                                           errorBlock:(void(^)(NSError *error))errorBlock;
 
 /**
  *  GET request
@@ -38,7 +44,7 @@
  *
  *  @param path         url path
  *  @param hearders     header dictionary
- *  @param parameters   parameter dictionary
+ *  @param body         nsdata body
  *  @param successBlock success block
  *  @param errorBlock   error block
  *
@@ -46,7 +52,7 @@
  */
 - (NSURLSessionTask *) POST:(NSString*)path
                     headers:(NSDictionary *) hearders
-                 parameters:(NSDictionary *)parameters
+                       body:(NSData *)body
                successBlock:(void(^)(id responseObject))successBlock
                  errorBlock:(void(^)(NSError *error))errorBlock;
 @end
