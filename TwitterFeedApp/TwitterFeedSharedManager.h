@@ -38,4 +38,15 @@
                         pageSize:(int)size
                          Success:(void(^)(id responseObject))success
                            error:(void(^)(NSError *error))error;
+
+/**
+ *  get avatar by url
+ *
+ *  @param urlString url string
+ *  @param success   success block
+ *  @param error     error block
+ */
+- (void) getAvatarByURL:(NSString *)urlString
+                success:(void(^)(id responseObject))success
+                  error:(void(^)(NSError *error))error;
 @end

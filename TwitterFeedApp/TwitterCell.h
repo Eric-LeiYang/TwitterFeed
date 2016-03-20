@@ -15,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *twitterTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+-(void) bindingViewModel:(TwitterCellViewModel *)viewModel;
+
 @end

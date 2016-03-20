@@ -7,8 +7,12 @@
 //
 
 #import "TwitterFeedViewController.h"
+#import "RealmHelpers.h"
+#import "TwitterCell.h"
 
-@interface TwitterFeedViewController ()
+@interface TwitterFeedViewController (){
+    NSArray *feedModels;
+}
 
 @end
 
@@ -17,10 +21,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self fetchData];
     
 }
+
+#pragma mark - Table view data source
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TwitterCell *twitterCell = [tableView dequeueReusableCellWithIdentifier:@"TwitterCell" forIndexPath:indexPath];
+    
+    TwitterCellViewModel *viewModel = [[TwitterCellViewModel alloc] initWithModel:feedModels[indexPath.row]];
+    [twitterCell bindingViewModel: viewModel];
+    
+    return twitterCell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    // Return the number of sections.
+    return 1;
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return feedModels.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 162;
+}
+
+//- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.row == feedModels.count-1) {
+//        if (next_page > 0) {
+//            [self fetchData];
+//        }
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -28,12 +65,24 @@
 }
 
 - (IBAction)searchButton:(UIButton *)sender {
-    [[TwitterFeedSharedManager manager] getTimeLineByScreenName:@"noradio" pageSize:5 Success:^(id responseObject) {
+    [self fetchData];
+}
+
+- (void) fetchData{
+    if (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) {
+        feedModels = [RealmHelpers allTwitterFeedModelFromRealm];
+        [self.tableView reloadData];
+        return;
+    }
+    
+    [[TwitterFeedSharedManager manager] getTimeLineByScreenName:self.nameTextField.text pageSize:5 Success:^(id responseObject) {
+        
+        feedModels = [RealmHelpers allTwitterFeedModelFromRealm];
+        [self.tableView reloadData];
         
     } error:^(NSError *error) {
         
+        
     }];
 }
-
-
 @end

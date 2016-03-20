@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TwitterCell.h"
 #import "TwitterFeedSharedManager.h"
+#import "TwitterCellViewModel.h"
 
 @interface TwitterFeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

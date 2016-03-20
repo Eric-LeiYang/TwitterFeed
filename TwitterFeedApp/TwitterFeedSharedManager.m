@@ -7,6 +7,7 @@
 //
 
 #import "TwitterFeedSharedManager.h"
+#import "RealmHelpers.h"
 
 #define kConsumerKey @"am6BTAfu4nQZffIFR2TOMZMNH"
 #define kConsumerSecretKey @"KDxwzNYCYmHNfrPyjhM23Oxl4sqoy0ETOsEa0Vm3keYdta7Lpi"
@@ -34,6 +35,18 @@
     [self performURLSessionTaskForRequest:[self customizeRequestForToken] successBlock:success errorBlock:error];
 }
 
+- (void) getAvatarByURL:(NSString *)urlString
+                success:(void(^)(id responseObject))success
+                  error:(void(^)(NSError *error))error{
+    @weakify(self);
+    [self setAuthorizationWithSuccess:^(id responseObject) {
+        
+        NSString *token = [NSString stringWithFormat:@"%@ %@", @"Bearer", responseObject[@"access_token"] ];
+        @strongify(self);
+        [self performURLSessionTaskForRequest:[self customizeRequestForAvatar:urlString token:token] successBlock:success errorBlock:error];
+    } error:error];
+}
+
 - (void) getTimeLineByScreenName:(NSString *)name
                         pageSize:(int)size
                          Success:(void(^)(id responseObject))success
@@ -50,14 +63,33 @@
                     @"count":[NSNumber numberWithInt:size]}
      successBlock:^(id responseObject) {
         
-         
-                        
-                        
+         for (NSDictionary *dict in responseObject) {
+             
+             NSMutableDictionary *_dict = [NSMutableDictionary new];
+             [_dict setObject:dict[@"user"][@"name"] forKey:@"name"];
+             [_dict setObject:dict[@"user"][@"screen_name"] forKey:@"userName"];
+             [_dict setObject:dict[@"user"][@"profile_image_url"] forKey:@"profileImageUrl"];
+             [_dict setObject:dict[@"created_at"] forKey:@"createdAt"];
+             [_dict setObject:dict[@"text"] forKey:@"twitterText"];
+             [_dict setObject:dict[@"id"] forKey:@"id"];
+             [RealmHelpers saveTwitterFeedModelToRealm:_dict];
+         }
+               
+         success(responseObject);
     } errorBlock:error];
     } error:error];
 }
 
 #pragma mark - Private Methods
+
+-(NSURLRequest *) customizeRequestForAvatar:(NSString *)urlString token:(NSString *)token{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:token forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    return request;
+}
+
 
 -(NSURLRequest *) customizeRequestForToken{
     NSCharacterSet *set = [NSCharacterSet URLHostAllowedCharacterSet];

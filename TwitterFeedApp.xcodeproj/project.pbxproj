@@ -19,7 +19,6 @@
 		F519BADD1C9DED5900F6F274 /* TwitterFeedAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BADC1C9DED5900F6F274 /* TwitterFeedAppTests.m */; };
 		F519BAE81C9DED5900F6F274 /* TwitterFeedAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BAE71C9DED5900F6F274 /* TwitterFeedAppUITests.m */; };
 		F519BAF81C9DF00500F6F274 /* TwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BAF71C9DF00500F6F274 /* TwitterCell.m */; };
-		F519BAFA1C9DF04F00F6F274 /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F519BAF91C9DF04F00F6F274 /* TwitterCell.xib */; };
 		F519BAFE1C9DF63F00F6F274 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BAFD1C9DF63F00F6F274 /* SessionManager.m */; };
 		F519BB021C9E121F00F6F274 /* TwitterFeedRealm.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BB011C9E121F00F6F274 /* TwitterFeedRealm.m */; };
 		F519BB071C9E175700F6F274 /* TwitterCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F519BB061C9E175700F6F274 /* TwitterCellViewModel.m */; };
@@ -68,7 +67,6 @@
 		F519BAE91C9DED5900F6F274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F519BAF61C9DF00500F6F274 /* TwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterCell.h; sourceTree = "<group>"; };
 		F519BAF71C9DF00500F6F274 /* TwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterCell.m; sourceTree = "<group>"; };
-		F519BAF91C9DF04F00F6F274 /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
 		F519BAFC1C9DF63F00F6F274 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
 		F519BAFD1C9DF63F00F6F274 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
 		F519BB001C9E121F00F6F274 /* TwitterFeedRealm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterFeedRealm.h; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				F519BAC91C9DED5900F6F274 /* TwitterFeedViewController.m */,
 				F519BAF61C9DF00500F6F274 /* TwitterCell.h */,
 				F519BAF71C9DF00500F6F274 /* TwitterCell.m */,
-				F519BAF91C9DF04F00F6F274 /* TwitterCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -372,7 +369,6 @@
 				F519BAD21C9DED5900F6F274 /* LaunchScreen.storyboard in Resources */,
 				F519BACF1C9DED5900F6F274 /* Assets.xcassets in Resources */,
 				F519BACD1C9DED5900F6F274 /* Main.storyboard in Resources */,
-				F519BAFA1C9DF04F00F6F274 /* TwitterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

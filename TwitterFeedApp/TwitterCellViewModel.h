@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TwitterFeedModel.h"
+#import "TwitterFeedSharedManager.h"
 
 @interface TwitterCellViewModel : NSObject
 
 @property NSString *name;
 @property NSString *userName;
 @property UIImage *avatarImage;
-@property NSString *time;
+@property NSString *timeString;
 @property NSString *twitterText;
+
+- (instancetype)initWithModel:(TwitterFeedModel *)model;
+
 @end

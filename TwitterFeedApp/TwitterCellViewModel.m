@@ -30,17 +30,18 @@
 - (void)initialize {
     //render value from model to ViewModel
     self.name = self.model.name;
-    self.userName = self.model.userName;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.model.profileImageUrl]];
+    self.userName = [@"@" stringByAppendingString:self.model.userName];
+    self.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.model.profileImageUrl]]];
+
+//    [[TwitterFeedSharedManager manager] getAvatarByURL:self.model.profileImageUrl success:^(id responseObject) {
+//        self.avatarImage = [[UIImage alloc] initWithData:responseObject];
+//    } error:^(NSError *error) {
+//        
+//    }];
+
     
-    [[NSURLSession sharedSession] dataTaskWithRequest:request
-                                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (!error) {
-            self.avatarImage = [[UIImage alloc] initWithData:data];
-        }
-    }];
     
-    self.time = self.model.createdAt;
+    self.timeString = self.model.createdAt;
     self.twitterText = self.model.twitterText;
 }
 @end

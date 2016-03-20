@@ -11,32 +11,26 @@
 
 @interface TwitterCell ()
 
-@property TwitterCellViewModel *viewModel;
-
 @end
 
 @implementation TwitterCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier  {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        _viewModel = [[TwitterCellViewModel alloc] init];
-        [self bindingViewModelWithUI];
-    }
     return self;
 }
 
 #pragma mark: Private
 
 //Binding ViewModel with UI
--(void) bindingViewModelWithUI{
+-(void) bindingViewModel:(TwitterCellViewModel *)viewModel{
     //Binding navigation title
     
-    RAC(self.avatarImageView, image) = RACObserve(self.viewModel, avatarImage);
-    RAC(self.nameLabel, text) = RACObserve(self.viewModel, name);
-    RAC(self.usernameLabel, text) = RACObserve(self.viewModel, userName);
-    RAC(self.twitterTextLabel, text) = RACObserve(self.viewModel, twitterText);
-    RAC(self.timeLabel, text) = RACObserve(self.viewModel, time);
+    RAC(self.avatarImageView, image) = RACObserve(viewModel, avatarImage);
+    RAC(self.nameLabel, text) = RACObserve(viewModel, name);
+    RAC(self.usernameLabel, text) = RACObserve(viewModel, userName);
+    RAC(self.twitterTextLabel, text) = RACObserve(viewModel, twitterText);
+    RAC(self.timeLabel, text) = RACObserve(viewModel, timeString);
 }
 
 @end

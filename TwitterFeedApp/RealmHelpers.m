@@ -31,7 +31,7 @@
     return model;
 }
 
-+ (BOOL) saveTwitterFeedModelToRealm:(NSDictionary *) dictionary{
++ (BOOL) saveTwitterFeedModelToRealm:(NSDictionary *)dictionary{
     
     NSError *error = nil;
     TwitterFeedModel *model = [RealmHelpers twitterFeedModelFromDictionary:dictionary];
@@ -39,6 +39,11 @@
     
     RLMRealm *realm = [RLMRealm defaultRealm];
     @autoreleasepool {
+        
+        RLMResults *results = [TwitterFeedRealm objectsInRealm:realm where:@"id == %@", model.id];
+        if (results.count > 0) {
+            return NO;
+        }
         
         [realm transactionWithBlock:^{
             [TwitterFeedRealm createInRealm:realm withValue:modelDictionary];
