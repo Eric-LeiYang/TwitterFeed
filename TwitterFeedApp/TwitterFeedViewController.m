@@ -28,10 +28,10 @@
 }
 
 - (IBAction)searchButton:(UIButton *)sender {
-    [[TwitterFeedSharedManager manager] setAuthorizationWithSuccess:^(id responseObject) {
-        NSLog(@"");
+    [[TwitterFeedSharedManager manager] getTimeLineByScreenName:@"noradio" pageSize:5 Success:^(id responseObject) {
+        
     } error:^(NSError *error) {
-    
+        
     }];
 }
 

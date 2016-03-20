@@ -39,14 +39,31 @@
 }
 
 - (NSURLSessionTask *) GET:(NSString*)path
+                    header:(NSDictionary *)header
+                parameters:(NSDictionary *)parameters
               successBlock:(void(^)(id responseObject))successBlock
                 errorBlock:(void(^)(NSError *error))errorBlock
 {
-    NSURL *url = [self.baseURL URLByAppendingPathComponent:path];
+    
+    NSURL *_url = [self.baseURL URLByAppendingPathComponent:path];
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:[_url absoluteString]];
+    
+    NSMutableArray *array = [NSMutableArray new];
+    for (NSString *key in [parameters allKeys]) {
+        NSURLQueryItem *item = [NSURLQueryItem queryItemWithName:key value:[NSString stringWithFormat:@"%@",[parameters objectForKey:key]]];
+        [array addObject:item];
+    }
+    components.queryItems = array;
+    NSURL *url = components.URL;
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url
                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                            timeoutInterval:kSequestTimeOutInterval];
     [request setHTTPMethod:@"GET"];
+    [request setValue:header[@"Authorization"] forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/x-www-form-urlencoded;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+
     return [self performURLSessionTaskForRequest:request successBlock:successBlock errorBlock:errorBlock];
 }
 

@@ -20,7 +20,7 @@
  *  @param successBlock success block
  *  @param errorBlock   error block
  *
- *  @return <#return value description#>
+ *  @return task
  */
 - (NSURLSessionTask *)performURLSessionTaskForRequest:(NSURLRequest *)request
                                          successBlock:(void(^)(id responseObject))successBlock
@@ -36,6 +36,8 @@
  *  @return instance of NSURLSessionTask
  */
 - (NSURLSessionTask *) GET:(NSString*)path
+                    header:(NSDictionary *)header
+                parameters:(NSDictionary *)parameters
               successBlock:(void(^)(id responseObject))successBlock
                 errorBlock:(void(^)(NSError *error))errorBlock;
 
