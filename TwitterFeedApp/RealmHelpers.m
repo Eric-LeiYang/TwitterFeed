@@ -60,8 +60,7 @@
 + (NSArray *) allTwitterFeedModelFromRealm{
     
     RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMResults *results = [TwitterFeedRealm allObjectsInRealm:realm];
-    [results sortedResultsUsingProperty:@"addedTime" ascending:NO];
+    RLMResults *results = [[TwitterFeedRealm allObjectsInRealm:realm] sortedResultsUsingProperty:@"addedTime" ascending:NO];
     NSMutableArray *modelArray = [[NSMutableArray alloc] init];
     for (TwitterFeedRealm *feed in results) {
         TwitterFeedModel *model = [[TwitterFeedModel alloc] initWithRealmObject:feed];
