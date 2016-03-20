@@ -17,8 +17,22 @@
 @property (nonatomic, copy) NSString *createdAt;
 @property (nonatomic, copy) NSString *twitterText;
 
+/**
+ *  init model with dictionary
+ *
+ *  @param dictionary dictionary
+ *
+ *  @return model object
+ */
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
+/**
+ *  init model object with realm object
+ *
+ *  @param realm realm object
+ *
+ *  @return model object
+ */
 - (instancetype) initWithRealmObject:(TwitterFeedRealm *)realm;
 
 @end

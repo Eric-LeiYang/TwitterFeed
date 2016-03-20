@@ -32,15 +32,6 @@
     self.name = self.model.name;
     self.userName = [@"@" stringByAppendingString:self.model.userName];
     self.avatarImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.model.profileImageUrl]]];
-
-//    [[TwitterFeedSharedManager manager] getAvatarByURL:self.model.profileImageUrl success:^(id responseObject) {
-//        self.avatarImage = [[UIImage alloc] initWithData:responseObject];
-//    } error:^(NSError *error) {
-//        
-//    }];
-
-    
-    
     self.timeString = self.model.createdAt;
     self.twitterText = self.model.twitterText;
 }

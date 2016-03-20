@@ -12,10 +12,20 @@
 
 @interface RealmHelpers : NSObject
 
-//Persist to Realm
+/**
+ *  Persist to Realm
+ *
+ *  @param dictionary object dictionary
+ *
+ *  @return save success or not
+ */
 + (BOOL) saveTwitterFeedModelToRealm:(NSDictionary *) dictionary;
 
-//Retrieval from Realm
+/**
+ *  Retrieval from Realm
+ *
+ *  @return Array of object
+ */
 + (NSArray *) allTwitterFeedModelFromRealm;
 
 @end

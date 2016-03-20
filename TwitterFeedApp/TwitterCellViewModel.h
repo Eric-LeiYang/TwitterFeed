@@ -19,6 +19,13 @@
 @property NSString *timeString;
 @property NSString *twitterText;
 
+/**
+ *  init cell view model with model object
+ *
+ *  @param model model object
+ *
+ *  @return return view model instance
+ */
 - (instancetype)initWithModel:(TwitterFeedModel *)model;
 
 @end

@@ -51,22 +51,13 @@
     return 162;
 }
 
-//- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row == feedModels.count-1) {
-//        if (next_page > 0) {
-//            [self fetchData];
-//        }
-//    }
-//}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - button actions
 
 - (IBAction)searchButton:(UIButton *)sender {
     [self fetchData];
 }
+
+#pragma mark - private
 
 - (void) fetchData{
     if (self.nameTextField.text == nil || [self.nameTextField.text isEqualToString:@""]) {
