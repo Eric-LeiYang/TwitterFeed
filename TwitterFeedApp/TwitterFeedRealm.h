@@ -15,7 +15,7 @@
 @property NSString *profileImageUrl;
 @property NSString *createdAt;
 @property NSString *twitterText;
-
+@property NSDate *addedTime;
 @end
 
 // This protocol enables typed collections. i.e.:
